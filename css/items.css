@@ -1,0 +1,135 @@
+/*                                   */
+/*  FORMULAIRE DEPOSER UNE ANNONCE   */
+/*                                   */
+
+#items{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#items .item {
+    border-radius: 8px;
+    padding: 10px;
+    margin: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.450);
+    cursor: pointer;
+}
+
+#items .vendeur {
+    margin-bottom: 10px;
+}
+
+#items .vendeur a {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+#items .imgItem{
+    height: 200px;
+    object-fit: cover;
+}
+
+#items .nom {
+    text-decoration: none;
+    color: #333;
+    font-size: 18px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+#items .prix {
+    color: #ff9900;
+    font-weight: bold;
+}
+
+#items .date {
+    color: #6c757d;
+}
+
+/*  Filtres de recherche   */
+
+#filtres .cats{
+    font-weight: bold;
+}
+
+#filtres optgroup{
+    font-size: 0;
+}
+
+#filtres optgroup option{
+    font-size: 15px;
+}
+
+/*                                   */
+/*            voir item              */
+/*                                   */
+
+
+#itemView {
+    width: 100%;
+    max-width: 1200px; /* Largeur maximale de la page */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.vendeur,
+.nom,
+.prix,
+.date {
+    display: block;
+    margin-bottom: 10px;
+    color: #333; /* Couleur du texte */
+}
+
+.imgItem {
+    width: 100%;
+    height: auto;
+    max-height: 500px; /* Hauteur maximale de l'image */
+    display: block;
+    margin-bottom: 20px;
+}
+
+/* Styles spécifiques aux éléments */
+.vendeur {
+    font-size: 18px;
+    font-weight: bold;
+    color: #0066cc; /* Couleur du texte pour le vendeur */
+}
+
+.nom {
+    font-size: 24px;
+    color: #333; /* Couleur du texte pour le nom et la sous-catégorie */
+}
+
+.prix {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff6600; /* Couleur du texte pour le prix */
+}
+
+.date {
+    font-size: 14px;
+    color: #666; /* Couleur du texte pour la date */
+}
+
+/* Mettez en valeur les liens en les rendant soulignés au survol */
+a:hover {
+    text-decoration: underline;
+}
+
+/*                                   */
+/*  FORMULAIRE DEPOSER UNE ANNONCE   */
+/*                                   */
+
+#addItem textarea{
+    resize: none;
+}
+
+
+/*                                   */
+/*          Voir mes annonces        */
+/*                                   */
+
+

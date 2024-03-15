@@ -1,0 +1,96 @@
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 325px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.219);
+}
+
+form h2 {
+    text-align: center;
+    color: #ff9900;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    color: #555;
+}
+
+input, select {
+    padding: 10px;
+    margin: 5px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #ff9900;
+    color: #fff;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d88c00;
+}
+
+form a{
+    margin-top: 10px;
+    color: #ff9900;
+    text-align: center;
+}
+
+
+/*                          */
+/*          PROFIL          */
+/*                          */
+
+#profil{
+    width: 60%;
+    min-width: 500px;
+}
+
+#profil div{
+    display: flex;
+}
+
+#profil div .modif{
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+#profil >:last-child{
+    text-align: right;
+    margin-left: auto;
+    justify-content: flex-end;
+}
+
+#profil div button{
+    margin:5px;
+    width: 200px;
+}
+
+
+/* btn deconnexion */
+#logout{
+    position: absolute;
+    right: 20px;
+    top:100px; 
+    width: 180px;  
+}
+
+#logout button{
+    background-image: url(../ressources/images/icon/onOff.png);
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: 15%;
+    background-position-x: +8px;
+}
