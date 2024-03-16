@@ -38,6 +38,29 @@ if(isset($_POST['add'])){
 
     $item = new Item(0000, $_SESSION['user'], $nom, $prix, $description, GetSousCatByCode($_COOKIE['sousCat']), '2020');
     AddItem($item);
+
+    if(isset($_FILES["image"]) && $_FILES["image"]["error"] == 0) { 
+        $item = GetLastItemUser($_SESSION['user']);
+        $ref =  $item->ref;
+
+        $nom = $_POST["nom"];
+        $prix = $_POST["prix"];
+        $description = $_POST["description"];
+        
+        $targetDir = "ressources/images/items/"; // Dossier de destination
+        $originalFileName = basename($_FILES["image"]["name"]);
+
+        $newFileName = $ref . '.' . pathinfo($originalFileName, PATHINFO_EXTENSION);
+        $newFilePath = $targetDir . $newFileName;
+
+        $check = getimagesize($_FILES["image"]["tmp_name"]);
+        if($check !== false) {
+            if(move_uploaded_file($_FILES["image"]["tmp_name"], $newFilePath)) {               
+            } 
+        } 
+    }
+
+
     setcookie('sousCat', '', time()-30);
     echo '<div id=PopUp><a href="./?action=menu">Votre article a bien été mis en vente !</a><a id=ok href="./?action=menu">Ok</a> </div>';
 }

@@ -20,6 +20,7 @@ class Item{
         $this->_sousCategorie = $sousCategorie;
         $this->_dateMiseEnLigne = $dateMiseEnLigne;
         $this->_image = null;
+        $this->getImg();
     }
 
     // Getters 
@@ -51,7 +52,13 @@ class Item{
     }
 
     // FUNCTIONS 
-    
+    private function getImg(){
+        $scandir = scandir("./ressources/images/items/");
+        foreach($scandir as $fichier){
+            if(pathinfo($fichier, PATHINFO_FILENAME) == $this->ref)
+                $this->_image = $fichier;
+        }
+    }
     
 }
 ?>

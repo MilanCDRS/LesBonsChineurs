@@ -34,7 +34,12 @@ foreach($items as $i){?>
     <div class="vendeur">
         <a class=nom><?php echo $i->vendeur->pseudo; ?></a> 
     </div>
-    <img class=imgItem src="ressources/images/icon/croix.png">
+    <?php
+        if($i->image)
+            echo "<img class=imgItem src='ressources/images/items/$i->image'>";
+        else
+            echo '<img class=imgItem src="ressources/images/icon/croix.png">';
+    ?>
     <a class=nom><?php echo $i->nom;?></a>
     <a class=prix><?php echo $i->prix;?>€</a><br>
     <a class=date><?php echo date('d/m/Y', strtotime($i->dateMiseEnLigne));?></a>

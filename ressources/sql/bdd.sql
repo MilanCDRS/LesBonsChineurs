@@ -137,6 +137,11 @@ BEGIN
     SELECT ref, identVendeur, nom, prix, description, codeSousCat, dateMiseEnLigne FROM Item WHERE identVendeur = _ident;
 END //
 
+CREATE PROCEDURE GetLastItemUser(IN _ident INT(10))
+BEGIN
+    SELECT ref, identVendeur, nom, prix, description, codeSousCat, dateMiseEnLigne FROM Item WHERE identVendeur = _ident ORDER BY dateMiseEnLigne DESC, ref DESC LIMIT 1;
+END //
+
 CREATE PROCEDURE GetItemsByCategorie(IN _codeCat INT(10), IN _prixMin INT(10), IN _prixMax INT(10))
 BEGIN
     SELECT ref, identVendeur, nom, prix, description, codeSousCat, dateMiseEnLigne 

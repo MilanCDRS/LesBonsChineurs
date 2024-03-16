@@ -50,6 +50,31 @@ function GetItemsByUser(User $user){
     return $items;
 }
 
+function GetLastItemUser(User $user){
+    $item = "";
+    try{
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("call GetLastItemUser($user->ident);");
+        $req->execute();
+
+        $res = $req->fetch(PDO::FETCH_ASSOC);
+        while ($res) {
+            $vendeur = GetUserById($res['identVendeur']);
+            $sousCat = GetSousCatByCode($res['codeSousCat']);
+            $item = new Item($res['ref'], $vendeur, $res['nom'], $res['prix'], $res['description'], $sousCat, $res['dateMiseEnLigne']);
+            
+            $res = $req->fetch(PDO::FETCH_ASSOC);
+        }
+    }
+    catch (Exception $e)
+    { 
+        $action = "404";
+    }
+
+    return $item;
+}
+
+
 function GetItems(){
     $items = array();
     try{

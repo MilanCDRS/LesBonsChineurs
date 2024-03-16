@@ -5,6 +5,7 @@
 #items{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 #items .item {
@@ -28,7 +29,8 @@
 
 #items .imgItem{
     height: 200px;
-    object-fit: cover;
+    width: 200px;
+    object-fit:contain;
 }
 
 #items .nom {
