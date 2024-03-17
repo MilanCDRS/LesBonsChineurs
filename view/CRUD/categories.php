@@ -37,8 +37,19 @@ SOUS CATEGORIES
             <tr>
                 <form method=POST>
                     <td><?php echo $c->codeSousCat; ?></td>
-                    <td><input type=text name=libelleCat placeholder=<?php echo $c->categorie->libelleCat; ?>></td>
-                    <td><input type=text name=libelleSousCat placeholder=<?php echo $c->libelleSousCat; ?>></td>      
+                    <td>
+                        <select name="categories">
+                        <?php 
+                            foreach($cats as $cat){
+                                if($cat == $c->categorie)
+                                    echo "<option class=cats value='$cat->codeCat' selected>$cat->libelleCat</option>";
+                                else
+                                    echo "<option class=cats value='$cat->codeCat'>$cat->libelleCat</option>";
+                            }
+                        ?>
+                        </select>
+                    </td>
+                    <td><input type=text name=libelleSousCat placeholder='<?php echo $c->libelleSousCat; ?>'></td>      
                     <td><button name=updateSousCat value=<?php echo $c->codeSousCat; ?>>Modifier</button></td>         
                     <td><button name=deleteSousCat value=<?php echo $c->codeSousCat; ?>>Supprimer</button></td>     
                 </form>

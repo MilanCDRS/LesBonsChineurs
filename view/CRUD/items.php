@@ -21,7 +21,18 @@
                     <td><input type=text name=nom placeholder='<?php echo $item->nom; ?>'></td>
                     <td><input type=text name=prix placeholder=<?php echo $item->prix; ?>></td>
                     <td><input type=text name=description placeholder="<?php echo htmlentities($item->description); ?>"></td>
-                    <td><input type=text name=libellesouscat placeholder='<?php echo htmlentities($item->sousCategorie->libelleSousCat); ?>'></td>
+                    <td>
+                        <select name="categories">
+                        <?php 
+                            foreach($souscats as $cat){
+                                if($cat == $item->sousCategorie)
+                                    echo "<option class=cats value='$cat->codeSousCat' selected>$cat->libelleSousCat</option>";
+                                else
+                                    echo "<option class=cats value='$cat->codeSousCat'>$cat->libelleSousCat</option>";
+                            }
+                        ?>
+                        </select>
+                    </td> 
                     <td><?php echo $item->dateMiseEnLigne; ?></td>
                     <td><button name=updateItem value=<?php echo $item->ref; ?>>Modifier</button></td>         
                     <td><button name=deleteItem value=<?php echo $item->ref; ?>>Supprimer</button></td>     

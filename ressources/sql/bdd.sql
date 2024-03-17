@@ -251,6 +251,11 @@ BEGIN
     (_refItem, _ident);
 END //
 
+CREATE PROCEDURE sendMessage(IN _idConv INT(10), IN _mess VARCHAR(200), IN _identEnvoyeur INT(10))
+BEGIN
+    INSERT INTO Message (idConv, message, identEnvoyeur, dateMess) VALUES (_idConv, _mess, _identEnvoyeur, current_date());
+END //
+
 -- Categories
 CREATE PROCEDURE GetCats()
 BEGIN
@@ -260,6 +265,11 @@ END //
 CREATE PROCEDURE GetCatByCode(IN _code INT(10))
 BEGIN
     SELECT code, libelle FROM Categorie WHERE code = _code;
+END //
+
+CREATE PROCEDURE GetSousCats()
+BEGIN
+    SELECT code, codeCat, libelle FROM sousCategorie;
 END //
 
 CREATE PROCEDURE GetSousCatsByCat(IN _codeCat INT(10))
@@ -272,7 +282,27 @@ BEGIN
     SELECT code, codeCat, libelle FROM sousCategorie WHERE code = _code;
 END //
 
-CREATE PROCEDURE sendMessage(IN _idConv INT(10), IN _mess VARCHAR(200), IN _identEnvoyeur INT(10))
+CREATE PROCEDURE DeleteCat(IN _code INT(10))
 BEGIN
-    INSERT INTO Message (idConv, message, identEnvoyeur, dateMess) VALUES (_idConv, _mess, _identEnvoyeur, current_date());
+    DELETE FROM Categorie WHERE code = _code;
+END //
+
+CREATE PROCEDURE UpdateCat(IN _code INT(10), IN _libelle VARCHAR(50))
+BEGIN
+    UPDATE Categorie
+    SET libelle = _libelle
+    WHERE code = _code;
+END //
+
+CREATE PROCEDURE DeleteSousCat(IN _code INT(10))
+BEGIN
+    DELETE FROM sousCategorie WHERE code = _code;
+END //
+
+CREATE PROCEDURE UpdateSousCat(IN _code INT(10), IN _codeCat INT(10), IN _libelle VARCHAR(50))
+BEGIN
+    UPDATE sousCategorie
+    SET codeCat = _codeCat,
+    libelle = _libelle
+    WHERE code = _code;
 END //

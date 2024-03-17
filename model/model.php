@@ -356,6 +356,28 @@ function GetCatByCode($code){
     return $Cat;
 }
 
+function GetSousCats(){
+    $Cats = array();
+    try{
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("call GetSousCats();");
+        $req->execute();
+
+        $res = $req->fetch(PDO::FETCH_ASSOC);
+        while ($res) {
+            $cat = GetCatByCode($res['codeCat']);
+            $sousCat = new sousCategorie($res['code'], $cat, $res['libelle']);
+            array_push($Cats, $sousCat);
+            $res = $req->fetch(PDO::FETCH_ASSOC);
+        }
+    }
+    catch (Exception $e)
+    { 
+        $action = "404";
+    }
+    return $Cats;
+}
+
 function GetSousCatsByCat(Categorie $cat){
     $Cats = array();
     try{
@@ -399,6 +421,54 @@ function GetSousCatByCode($code){
     return $sousCat;
 }
 
+function DeleteCat(Categorie $cat){
+    try{
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("call DeleteCat($cat->codeCat);");
+        $req->execute();
+    }
+    catch (Exception $e)
+    { 
+        $action = "404";
+    }
+}
+
+function UpdateCat(Categorie $cat){
+    try{
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("call UpdateCat($cat->codeCat, '$cat->libelleCat');");
+        $req->execute();
+    }
+    catch (Exception $e)
+    { 
+        $action = "404";
+    }
+}
+
+function DeleteSousCat(sousCategorie $souscat){
+    try{
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("call DeleteSousCat($souscat->codeSousCat);");
+        $req->execute();
+    }
+    catch (Exception $e)
+    { 
+        $action = "404";
+    }
+}
+
+function UpdateSousCat(sousCategorie $souscat){
+    $cat = $souscat->categorie->codeCat;
+    try{
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("call UpdateSousCat($souscat->codeSousCat, $cat ,'$souscat->libelleSousCat');");
+        $req->execute();
+    }
+    catch (Exception $e)
+    { 
+        $action = "404";
+    }
+}
 //
 //      Conversations et messages
 //
