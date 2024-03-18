@@ -114,8 +114,8 @@ INSERT INTO Conversation (refItem, identAcheteur) VALUES
 (1,4);
 
 INSERT INTO Message (idConv, message, identEnvoyeur, dateMess) VALUES
-(1,"HELLO", 1, current_date()),
-(1,"HELLO", 2, current_date());
+(1,"Bonjour, votre article est-il toujours en vente ?", 1, current_date()),
+(1,"Bien sûr !", 2, current_date());
 
 -- PROCEDURES STOCKÉES 
 
@@ -238,6 +238,13 @@ BEGIN
     FROM Conversation INNER JOIN Item on refItem = ref
     WHERE identAcheteur = _ident
     OR identVendeur = _ident;
+END //
+
+CREATE PROCEDURE GetConversationById(IN _id INT(10))
+BEGIN
+    SELECT idConv, refItem, identAcheteur 
+    FROM Conversation
+    WHERE idConv = _id;
 END //
 
 CREATE PROCEDURE GetMessagesConversation(IN _idConv INT(10))
