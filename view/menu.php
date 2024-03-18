@@ -38,7 +38,7 @@ foreach($items as $i){?>
         if($i->image)
             echo "<img class=imgItem src='ressources/images/items/$i->image'>";
         else
-            echo '<img class=imgItem src="ressources/images/icon/croix.png">';
+            echo '<img class=imgItem src="ressources/images/icon/vide.png">';
     ?>
     <a class=nom><?php echo $i->nom;?></a>
     <a class=prix><?php echo $i->prix;?>€</a><br>

@@ -11,6 +11,18 @@
         </tr>
     </thead>
     <tbody>
+    <tr>
+        <form method=POST>
+            <td></td>
+            <td><input type=text name=pseudo placeholder='Ajouter un Utilisateur'></td>
+            <td><input type=text name=mail placeholder="mail"></td>
+            <td><input type=text name=mdp placeholder="mot de passe"></td>>
+            <td></td>
+            <td><button name=addUser>Ajouter</button></td> 
+            <td></td>
+        </form>
+    </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
         <?php foreach ($users as $u): ?>
             <tr>
                 <form method=POST>

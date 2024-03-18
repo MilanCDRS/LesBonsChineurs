@@ -9,6 +9,15 @@ CATEGORIES
         </tr>
     </thead>
     <tbody>
+        <tr>
+            <form method=POST>
+                <td></td>
+                <td><input type=text name=libelleCat placeholder='Ajouter une Catégorie'></td>
+                <td><button name=addCat>Ajouter</button></td> 
+                <td></td>
+            </form>
+        </tr>
+        <tr><td></td><td></td><td></td><td></td></tr>
         <?php foreach ($cats as $c): ?>
             <tr>
                 <form method=POST>
@@ -33,6 +42,24 @@ SOUS CATEGORIES
         </tr>
     </thead>
     <tbody>
+        <tr>
+            <form method=POST>
+                <td></td>
+                <td>
+                    <select name="categories">
+                    <?php 
+                        foreach($cats as $cat){
+                            echo "<option class=cats value='$cat->codeCat'>$cat->libelleCat</option>";
+                        }
+                    ?>
+                    </select>
+                </td>
+                <td><input type=text name=libelleSousCat placeholder='Ajouter une Sous Catégorie'></td>
+                <td><button name=addSousCat value=1>Ajouter</button></td> 
+                <td></td>
+            </form>
+        </tr>
+        <tr><td></td><td></td><td></td><td></td><td></td></tr>
         <?php foreach ($souscats as $c): ?>
             <tr>
                 <form method=POST>

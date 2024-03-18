@@ -31,7 +31,7 @@
                 ?>
 
                 <div class="add">                
-                    <img src="ressources/images/icon/croix.png">
+                    <img src="ressources/images/icon/croix.svg">
                     <a href="./?action=add">Déposer une annonce</a>
                 </div>
 

@@ -306,3 +306,13 @@ BEGIN
     libelle = _libelle
     WHERE code = _code;
 END //
+
+CREATE PROCEDURE AddCat(IN _libelle VARCHAR(250))
+BEGIN
+    INSERT INTO Categorie (libelle) VALUES (_libelle);
+END //
+
+CREATE PROCEDURE AddSousCat(IN _codeCat INT(10), IN _libelle VARCHAR(250))
+BEGIN
+    INSERT INTO sousCategorie (codeCat, libelle) VALUES (_codeCat, _libelle);
+END //

@@ -278,10 +278,10 @@ function UpdateUser(User $user){
     }
 }
 
-function DeletetUser(User $user){
+function DeleteUser(User $user){
     try{
         $cnx = connexionPDO();
-        $req = $cnx->prepare("call deletetUser($user->ident);");
+        $req = $cnx->prepare("call deleteUser($user->ident);");
         $req->execute();
     }
     catch (Exception $e)
@@ -469,6 +469,32 @@ function UpdateSousCat(sousCategorie $souscat){
         $action = "404";
     }
 }
+
+function AddCat(Categorie $cat){
+    try{
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("call AddCat('$cat->libelleCat');");
+        $req->execute();
+    }
+    catch (Exception $e)
+    { 
+        $action = "404";
+    }
+}
+
+function AddSousCat(sousCategorie $souscat){
+    $codeCat = $souscat->categorie->codeCat;
+    try{
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("call AddCat($codeCat, '$souscat->libelleSousCat');");
+        $req->execute();
+    }
+    catch (Exception $e)
+    { 
+        $action = "404";
+    }
+}
+
 //
 //      Conversations et messages
 //
