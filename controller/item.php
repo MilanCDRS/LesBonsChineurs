@@ -5,6 +5,9 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 }
 include_once "$racine/view/header.php";
 
+if(!isLoggedOn()){
+    header("location: ./?action=menu");
+}
 $messErr = "";
 
 //CODE 

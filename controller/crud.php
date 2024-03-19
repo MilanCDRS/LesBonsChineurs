@@ -3,7 +3,6 @@
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     $racine = "..";
 }
-include_once "$racine/model/crud.php";
 include_once "$racine/view/header.php";
 
 if(!isLoggedOnAsAdmin()){
