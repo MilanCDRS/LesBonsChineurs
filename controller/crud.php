@@ -35,6 +35,16 @@ else{
 }
 
 // ITEMS
+if(isset($_POST['addItem']))
+{
+    $user = GetUserById($_POST['user']);
+    $nom = $_POST['nom'];
+    $prix = (is_int($_POST['prix'])) ? $_POST['prix'] : 50;
+    $description = $_POST['description'];
+    $souscat = GetSousCatByCode($_POST['categories']);
+    $item = new Item(0000, $user, $nom, $prix, $description, $souscat, date("YYYY/MM/DD"));
+    AddItem($item);    
+}
 if(isset($_POST['updateItem']))
 {
     $ref = $_POST['updateItem'];
@@ -43,46 +53,67 @@ if(isset($_POST['updateItem']))
     $item->prix = $_POST['prix'] ? $_POST['prix'] : $item->prix;
     $item->description = $_POST['description'] ? $_POST['description'] : $item->description;
     $item->sousCategorie = GetSousCatByCode($_POST['categories']) ? GetSousCatByCode($_POST['categories']) : $item->sousCategorie;
-    UpdateItem($item);
+    UpdateItem($item);    
 }
 if(isset($_POST['deleteItem']))
 {
     $ref = $_POST['deleteItem'];
-    DeleteItem(GetItemByRef($ref));
+    DeleteItem(GetItemByRef($ref));    
 }
 
 // CATREGORIES
+if(isset($_POST['addCat']))
+{
+    $lib = $_POST['libelleCat'];
+    $cat = New Categorie(0000, $lib);
+    AddCat($cat);
+}
 if(isset($_POST['updateCat']))
 {
     $code = $_POST['updateCat'];
     $cat = GetCatByCode($code);
     $cat->libelleCat = $_POST['libelleCat'] ? $_POST['libelleCat'] : $cat->libelleCat;
-    UpdateCat($cat);
+    UpdateCat($cat);    
 }
 if(isset($_POST['deleteCat']))
 {
     $code = $_POST['deleteCat'];
     $cat = GetCatByCode($code);
-    DeleteCat($cat);
+    DeleteCat($cat);    
 }
 
 //SousCategories
+if(isset($_POST['addSousCat']))
+{
+    $lib = $_POST['libelleSousCat'];
+    $cat = GetCatByCode($_POST['categories']);
+    $souscat = New sousCategorie(0000, $cat, $lib);
+    AddSousCat($souscat);    
+}
 if(isset($_POST['updateSousCat']))
 {
     $code = $_POST['updateSousCat'];
     $souscat = GetSousCatByCode($code);
     $souscat->libelleSousCat = $_POST['libelleSousCat'] ? $_POST['libelleSousCat'] : $souscat->libelleSousCat;
     $souscat->categorie = GetCatByCode($_POST['categories']) ? GetCatByCode($_POST['categories']) : $souscat->categorie;
-    UpdateSousCat($souscat);
+    UpdateSousCat($souscat);    
 }
 if(isset($_POST['deleteSousCat']))
 {
     $code = $_POST['deleteSousCat'];
     $souscat = GetSousCatByCode($code);
-    DeleteSousCat($souscat);
+    DeleteSousCat($souscat);    
 }
 
 //USER
+if(isset($_POST['addUser']))
+{
+    $pseudo = $_POST['pseudo'];
+    $mail = $_POST['mail'];
+    $mdp = hash('md5', $_POST['mdp']);
+    $user = new User(0000, $pseudo, $mail, $mdp, date("YY/MM/DD"));
+    InsertUser($user);    
+}
 if(isset($_POST['updateUser']))
 {
     $ident = $_POST['updateUser'];
@@ -90,12 +121,12 @@ if(isset($_POST['updateUser']))
     $user->pseudo = $_POST['pseudo'] ? $_POST['pseudo'] : $user->pseudo;
     $user->mail = $_POST['mail'] ? $_POST['mail'] : $user->mail;
     $user->mdp = $_POST['mdp'] ? hash('md5',$_POST['mdp']) : $user->mdp;
-    UpdateUser($user);
+    UpdateUser($user);    
 } 
 if(isset($_POST['deleteUser']))
 {
     $ident = $_POST['updateUser'];
-    DeleteUser(GetUserById($ident));
+    DeleteUser(GetUserById($ident));    
 } 
 
 //RENDER

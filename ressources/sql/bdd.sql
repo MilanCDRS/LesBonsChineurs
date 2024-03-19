@@ -114,8 +114,8 @@ INSERT INTO Conversation (refItem, identAcheteur) VALUES
 (1,4);
 
 INSERT INTO Message (idConv, message, identEnvoyeur, dateMess) VALUES
-(1,"HELLO", 1, current_date()),
-(1,"HELLO", 2, current_date());
+(1,"Bonjour, votre article est-il toujours en vente ?", 1, current_date()),
+(1,"Bien sûr !", 2, current_date());
 
 -- PROCEDURES STOCKÉES 
 
@@ -240,6 +240,13 @@ BEGIN
     OR identVendeur = _ident;
 END //
 
+CREATE PROCEDURE GetConversationById(IN _id INT(10))
+BEGIN
+    SELECT idConv, refItem, identAcheteur 
+    FROM Conversation
+    WHERE idConv = _id;
+END //
+
 CREATE PROCEDURE GetMessagesConversation(IN _idConv INT(10))
 BEGIN
     SELECT codeMess, idConv, message, identEnvoyeur, dateMess FROM Message WHERE idConv = _idConv;
@@ -305,4 +312,14 @@ BEGIN
     SET codeCat = _codeCat,
     libelle = _libelle
     WHERE code = _code;
+END //
+
+CREATE PROCEDURE AddCat(IN _libelle VARCHAR(250))
+BEGIN
+    INSERT INTO Categorie (libelle) VALUES (_libelle);
+END //
+
+CREATE PROCEDURE AddSousCat(IN _codeCat INT(10), IN _libelle VARCHAR(250))
+BEGIN
+    INSERT INTO sousCategorie (codeCat, libelle) VALUES (_codeCat, _libelle);
 END //

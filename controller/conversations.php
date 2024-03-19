@@ -16,17 +16,17 @@ $laConv = null;
 
 
 if(isset($_GET['conv'])){
-    if($conversations != null && $conversations[0]!=null){
-        $laConv = $conversations[$_GET['conv']-1];
-        $messages = GetMessagesConversation($laConv);
-    }
+    
+    $laConv = GetConversationById($_GET['conv']);
+    $messages = GetMessagesConversation($laConv);
+
     
     if(isset($_POST['sendMess'])){
     $mess = $_POST['message'];
     $mess = str_replace("'", "''", $mess);
     $mess = str_replace("\\", "\\\\", $mess);
         if(trim($mess, " ") != null){        
-            sendMessage($conversations[$_GET['conv']-1], $mess, $_SESSION['user']);
+            sendMessage($laConv, $mess, $_SESSION['user']);
             $messages = GetMessagesConversation($laConv);
             header("Refresh:0"); // evite la popup "Confirmer le nouvele nvoi du formulaire"
         }

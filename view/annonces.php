@@ -2,7 +2,7 @@
 
     <div id=ajouterItem class="item">
         <a class=nom>Ajoutez une annonce !</a> 
-        <img class=imgItem src="ressources/images/icon/croix.png">
+        <img class=imgItem src="ressources/images/icon/croix.svg">
     </div>
 
     <?php 
@@ -13,7 +13,7 @@
         <div class="vendeur">
             <a class=nom><?php echo $i->vendeur->pseudo; ?></a> 
         </div>
-        <img class=imgItem src="ressources/images/icon/croix.png">
+        <img class=imgItem src="ressources/images/icon/vide.png">
         <a class=nom><?php echo $i->nom;?></a>
         <a class=prix><?php echo $i->prix;?>€</a><br>
         <a class=datr><?php echo date('d/m/Y', strtotime($i->dateMiseEnLigne));?></a>

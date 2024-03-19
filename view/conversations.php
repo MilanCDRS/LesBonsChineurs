@@ -1,37 +1,39 @@
-<div id="conversations">
-    <H3>↓ CONVERSATIONS ↓</H3>
+<div id=communication>
+    <div id="conversations">
+        <H3>↓ CONVERSATIONS ↓</H3>
 
-    <?php 
-    if(is_array($conversations)){
-        foreach($conversations as $conv){            
-            echo "<a id='".$conv->item->ref."' href='./?conv=$conv->idConv' class=conv >";
-            if($conv->userAcheteur == $_SESSION['user'])    echo $conv->item->vendeur->pseudo;
-            else                                        echo $conv->userAcheteur->pseudo;
-            echo " | ".$conv->item->nom."</a>";
-        } 
-    }?> 
-
-</div>
-
-<div id="messages">
-    <div id="mess">
         <?php 
-        if(is_array($messages)){
-            foreach($messages as $mess){
-                if($mess->envoyeur == $_SESSION['user'])    echo "<a class=sent>";
-                else echo "<a class=received>";
-                echo $mess->message;
-                echo "</a>";
+        if(is_array($conversations)){
+            foreach($conversations as $conv){            
+                echo "<a id='".$conv->idConv."' href='./?conv=$conv->idConv' class=conv >";
+                if($conv->userAcheteur == $_SESSION['user'])    echo $conv->item->vendeur->pseudo;
+                else                                        echo $conv->userAcheteur->pseudo;
+                echo " | ".$conv->item->nom."</a>";
             } 
         }?> 
+
     </div>
 
-<form method=POST id=sendMessage autocomplete="off">
-    <img src="ressources/images/icon/smiley.png">
-    <input id=TxtMess type="text" name="message" required>
-    <button type="submit" name="sendMess">Envoyer</button>
-</form>
+    <div id="messages">
+        <div id="mess">
+            <?php 
+            if(is_array($messages)){
+                foreach($messages as $mess){
+                    if($mess->envoyeur == $_SESSION['user'])    echo "<a class=sent>";
+                    else echo "<a class=received>";
+                    echo $mess->message;
+                    echo "</a>";
+                } 
+            }?> 
+        </div>
 
+    <form method=POST id=sendMessage autocomplete="off">
+        <img src="ressources/images/icon/smiley.png">
+        <input id=TxtMess type="text" name="message" required>
+        <button type="submit" name="sendMess">Envoyer</button>
+    </form>
+
+    </div>
 </div>
 
 <script>
