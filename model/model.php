@@ -566,6 +566,26 @@ function GetMessagesConversation(Conversation $conv){
     return $mess;
 }
 
+function GetConversationByUserAndItem(Item $item, User $user){
+    $conv="";
+    try{
+        $cnx = connexionPDO();
+        $req = $cnx->prepare("call GetConversationByUserAndItem($item->ref, $user->ident);");
+        $req->execute();
+
+        $res = $req->fetch(PDO::FETCH_ASSOC);
+        while ($res) {
+            $conv = new Conversation($res['idConv'], $item, $user);
+            $res = $req->fetch(PDO::FETCH_ASSOC);
+        }
+    }
+    catch (Exception $e)
+    { 
+        $action = "404";
+    }
+    return $conv;
+}
+
 function sendMessage(Conversation $conv, $mess, User $user){
     try{
         $cnx = connexionPDO();

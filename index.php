@@ -15,7 +15,7 @@ if(isset($_GET['conv'])){
     $action="messages";
 }
 
-if(isset($_GET['item'])){
+if(isset($_GET['i'])){
     $action="item";
 }
 

@@ -5,15 +5,24 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
 }
 include_once "$racine/view/header.php";
 
-if(isLoggedOn()){
-    header("location: ./?action=menu");
-}
-
 $messErr = "";
 
 //CODE 
-if(isset($_GET["item"])){
-    $item = GetItemByRef($_GET["item"]);
+if(isset($_GET["i"])){
+    $item = GetItemByRef($_GET["i"]);
+}
+
+if(isset($_POST['contacter'])){
+    $item = GetItemByRef($_POST['contacter']);
+
+    if(!GetConversationByUserAndItem($item, $_SESSION['user'])){
+        createConversation($item);
+    }
+
+    $conv = GetConversationByUserAndItem($item, $_SESSION['user']);
+
+    $convId = $conv->idConv;
+    header("location: ./?conv=$convId");
 }
 
 //RENDER

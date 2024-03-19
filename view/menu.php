@@ -43,7 +43,7 @@ foreach($items as $i){?>
     <a class=nom><?php echo $i->nom;?></a>
     <a class=prix><?php echo $i->prix;?>€</a><br>
     <a class=date><?php echo date('d/m/Y', strtotime($i->dateMiseEnLigne));?></a>
-    <a class=link href="./?item=<?php echo $i->ref;?>">Plus d'information</a>
+    <?php echo "<a href='./?i=$i->ref' class=link >Plus D'informations</a>";?>
 </div>
 
 <?php }} ?>

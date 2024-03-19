@@ -247,6 +247,13 @@ BEGIN
     WHERE idConv = _id;
 END //
 
+CREATE PROCEDURE GetConversationByUserAndItem(IN _ref INT(10), _ident INT(10))
+BEGIN
+    SELECT idConv, refItem, identAcheteur 
+    FROM Conversation
+    WHERE refItem = _ref AND identAcheteur = _ident;
+END //
+
 CREATE PROCEDURE GetMessagesConversation(IN _idConv INT(10))
 BEGIN
     SELECT codeMess, idConv, message, identEnvoyeur, dateMess FROM Message WHERE idConv = _idConv;
